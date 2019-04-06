@@ -3,7 +3,6 @@ FROM debian
 ARG CHANNEL
 ARG MDBOOK_RELEASE=0.2.1
 
-
 RUN apt-get update && \
 	apt-get install -y \
 	git \
@@ -19,12 +18,15 @@ RUN apt-get update && \
 	libsdl2-dev \
 	curl
 
+RUN useradd -ms /bin/bash jenkins
+USER jenkins
+
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${CHANNEL}
 
-ENV PATH=/root/.cargo/bin:$PATH
+ENV PATH=/home/jenkins/.cargo/bin:$PATH
 
 RUN rustup component add rustfmt
 
-RUN cargo install mdbook --vers ${MDBOOK_RELEASE}
+# RUN cargo install mdbook --vers ${MDBOOK_RELEASE}
 
 
