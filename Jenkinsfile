@@ -2,9 +2,11 @@ pipeline {
     agent {
 	label 'docker'
     }
-    stage("build") {
-	steps {
-	    sh './scripts/build.sh'
+    stages {
+	stage("build") {
+	    steps {
+		sh './scripts/build.sh'
+	    }
 	}
     }
 }
