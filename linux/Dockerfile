@@ -27,6 +27,6 @@ ENV PATH=/home/jenkins/.cargo/bin:$PATH
 
 RUN rustup component add rustfmt
 
-# RUN cargo install mdbook --vers ${MDBOOK_RELEASE}
+RUN cargo install mdbook --vers ${MDBOOK_RELEASE}
 
 
