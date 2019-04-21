@@ -18,7 +18,9 @@ RUN apt-get update && \
 	libsdl2-dev \
 	curl
 
+COPY asound.conf /etc/asound.conf
 RUN useradd -ms /bin/bash jenkins
+RUN usermod -aG audio jenkins
 USER jenkins
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${CHANNEL}
