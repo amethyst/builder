@@ -16,7 +16,8 @@ RUN apt-get update && \
 	python3 \
 	build-essential \
 	libsdl2-dev \
-	curl
+	curl \
+	jq
 
 COPY asound.conf /etc/asound.conf
 RUN useradd -ms /bin/bash jenkins
@@ -30,5 +31,3 @@ ENV PATH=/home/jenkins/.cargo/bin:$PATH
 RUN rustup component add rustfmt
 
 RUN cargo install mdbook --vers ${MDBOOK_RELEASE}
-
-
