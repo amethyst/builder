@@ -51,7 +51,7 @@ RUN if ! test -d "kcov-$KCOV_VERSION/${KCOV_BUILD_DIR}"; then mkdir "kcov-$KCOV_
 RUN cd "kcov-$KCOV_VERSION/${KCOV_BUILD_DIR}" && \
 	cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release && \
 	make && \
-	sudo make install
+	make install
 
 COPY asound.conf /etc/asound.conf
 RUN useradd -ms /bin/bash jenkins
