@@ -37,6 +37,10 @@ RUN apt-get install -y \
 	wget \
 	zip
 
+RUN echo $PATH
+RUN ls /usr/bin | grep -F python || true
+RUN which python
+
 # Download kcov
 # -nc is okay since we are downloading a tagged version
 RUN wget -nc https://github.com/SimonKagstrom/kcov/archive/v$KCOV_VERSION.zip
