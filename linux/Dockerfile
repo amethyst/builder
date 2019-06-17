@@ -33,6 +33,7 @@ RUN apt-get install -y \
 	zlib1g-dev \
 	libiberty-dev \
 	pkg-config \
+	python2.7 \
 	wget \
 	zip
 
