@@ -37,6 +37,10 @@ RUN apt-get install -y \
 	wget \
 	zip
 
+# For some reason `python` isn't the default executable file name.
+# Needed for kcov
+RUN ln -s /usr/bin/python2.7 /usr/bin/python
+
 # Download kcov
 # -nc is okay since we are downloading a tagged version
 RUN wget -nc https://github.com/SimonKagstrom/kcov/archive/v$KCOV_VERSION.zip
@@ -45,7 +49,6 @@ RUN unzip -uoq v$KCOV_VERSION.zip
 # Build KCov
 RUN if ! test -d "kcov-$KCOV_VERSION/${KCOV_BUILD_DIR}"; then mkdir "kcov-$KCOV_VERSION/${KCOV_BUILD_DIR}" ; fi
 RUN cd "kcov-$KCOV_VERSION/${KCOV_BUILD_DIR}" && \
-	alias python=python2.7 && \
 	cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release && \
 	make && \
 	sudo make install
