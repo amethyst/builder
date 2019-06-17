@@ -37,10 +37,6 @@ RUN apt-get install -y \
 	wget \
 	zip
 
-RUN echo $PATH
-RUN ls /usr/bin | grep -F python || true
-RUN which python
-
 # Download kcov
 # -nc is okay since we are downloading a tagged version
 RUN wget -nc https://github.com/SimonKagstrom/kcov/archive/v$KCOV_VERSION.zip
@@ -49,6 +45,7 @@ RUN unzip -uoq v$KCOV_VERSION.zip
 # Build KCov
 RUN if ! test -d "kcov-$KCOV_VERSION/${KCOV_BUILD_DIR}"; then mkdir "kcov-$KCOV_VERSION/${KCOV_BUILD_DIR}" ; fi
 RUN cd "kcov-$KCOV_VERSION/${KCOV_BUILD_DIR}" && \
+	alias python=python2.7 && \
 	cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release && \
 	make && \
 	sudo make install
