@@ -63,5 +63,6 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${CHANNEL}
 ENV PATH=/home/jenkins/.cargo/bin:$PATH
 
 RUN rustup component add rustfmt
+RUN rustup component add clippy
 
 RUN cargo install mdbook --vers ${MDBOOK_RELEASE}
