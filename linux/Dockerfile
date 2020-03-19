@@ -30,7 +30,9 @@ RUN apt-get update && \
 	pkg-config \
 	python2.7 \
 	wget \
-	zip && \
+	zip \
+	nodejs \
+	&& \
 	apt-get clean
 
 # --- kcov --- #
@@ -66,3 +68,7 @@ RUN rustup component add rustfmt
 RUN rustup component add clippy
 
 RUN cargo install mdbook --vers ${MDBOOK_RELEASE}
+
+# WASM, including `nodejs` above
+RUN rustup target add wasm32-unknown-unknown
+RUN curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
