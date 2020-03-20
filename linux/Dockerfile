@@ -60,9 +60,13 @@ RUN useradd -ms /bin/bash jenkins
 RUN usermod -aG audio jenkins
 USER jenkins
 
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${CHANNEL}
-
+# We need to do this for the backtracking behaviour for the latest ${CHANNEL} with all available
+# components, which may not be the current latest.
+#
+# See https://github.com/rust-lang/rustup/issues/2227
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none
 ENV PATH=/home/jenkins/.cargo/bin:$PATH
+RUN rustup toolchain install ${CHANNEL}
 
 RUN rustup component add rustfmt
 RUN rustup component add clippy
