@@ -7,31 +7,31 @@ ARG KCOV_BUILD_DIR=kcov-build
 
 RUN apt-get update && \
 	apt-get install -y \
-	git \
-	libasound2-dev \
-	libx11-xcb-dev \
-	libssl-dev \
-	cmake \
-	libfreetype6-dev \
-	libexpat1-dev \
-	libxcb1-dev \
-	python3 \
-	build-essential \
-	libsdl2-dev \
-	curl \
-	jq \
-	libcurl4-openssl-dev \
-	libelf-dev \
-	libdw-dev \
-	gcc \
 	binutils-dev \
-	zlib1g-dev \
+	build-essential \
+	cmake \
+	curl \
+	gcc \
+	git \
+	jq \
+	libasound2-dev \
+	libcurl4-openssl-dev \
+	libdw-dev \
+	libelf-dev \
+	libexpat1-dev \
+	libfreetype6-dev \
 	libiberty-dev \
+	libsdl2-dev \
+	libssl-dev \
+	libx11-xcb-dev \
+	libxcb1-dev \
+	nodejs \
 	pkg-config \
 	python2.7 \
+	python3 \
 	wget \
 	zip \
-	nodejs \
+	zlib1g-dev \
 	&& \
 	apt-get clean
 
