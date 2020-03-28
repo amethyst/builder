@@ -75,4 +75,5 @@ RUN cargo install mdbook --vers ${MDBOOK_RELEASE}
 
 # WASM, including `nodejs` above
 RUN rustup target add wasm32-unknown-unknown
+RUN rustup component add rust-src
 RUN curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
